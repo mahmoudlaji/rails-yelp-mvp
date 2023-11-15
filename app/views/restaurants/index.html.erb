@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <p style="color: green">
+    <%= notice %>
+  </p>
 
-<h1>Restaurants</h1>
+  <h1 style="text-align: center;">Restaurants</h1>
+  <div class="container">
+    <div class="card" id="restaurants">
+      <div class="card-body">
+        <% @restaurants.each do |restaurant| %>
+        <div class="card">
+          <%= render restaurant %>
+            <p>
+              <%= link_to "View Detail" , restaurant, class: "btn btn-success" %>
+            </p></div>
+            <% end %>
 
-<div id="restaurants">
-  <% @restaurants.each do |restaurant| %>
-    <%= render restaurant %>
-    <p>
-      <%= link_to "Show this restaurant", restaurant %>
-    </p>
-  <% end %>
+      </div>
+    </div>
+  </div><br>
+  <%= link_to "New restaurant" , new_restaurant_path, class: "btn btn-primary" %>
 </div>
 
-<%= link_to "New restaurant", new_restaurant_path %>
+<!-- <div class="card" style="width:400px">
+  <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+  <div class="card-body">
+    <h4 class="card-title">John Doe</h4>
+    <p class="card-text">Some example text.</p>
+    <a href="#" class="btn btn-primary">See Profile</a>
+  </div>
+</div> -->

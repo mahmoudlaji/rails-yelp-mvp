@@ -1,13 +1,38 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="card">
+    <p style="color: green">
+      <%= notice %>
+    </p>
 
-<%= render @restaurant %>
+    <%= render @restaurant %>
 
-<!--  -->
-<br>
+      <!--  -->
+      <p><strong>Reviews</strong></p><br>
+      <%= link_to "Create Your Review Here!!!" , new_restaurant_review_path(@restaurant), class: "btn btn-primary" %>
+        <br><br>
+        <div class="card">
+          <ul class="list-group">
+            <% @restaurant.reviews.each do |review| %>
+              <li class="list-group-item">
+                <%= review.rating %>
+              </li>
+              <li class="list-group-item">
+                <%= review.content %>
+              </li>
+              <%= link_to "Delete" , review_path(review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"
+                }%> <br>
+                <% end %>
+          </ul>
+        </div>
+        <br>
 
-<div>
-  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
-  <%= link_to "Back to restaurants", restaurants_path %>
+        <div>
+          <%= link_to "Edit this restaurant" , edit_restaurant_path(@restaurant), class: "btn btn-info" %> <br>
+            <br>
 
-  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+            <%= button_to "Delete this restaurant" , @restaurant, method: :delete, class: "btn btn-danger" %>
+        </div>
+
+        <%= link_to "Back to restaurants" , restaurants_path %>
+  </div>
 </div>
